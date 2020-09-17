@@ -1,66 +1,65 @@
 cc.Class({
     extends: cc.Component,
 
-    properties: {
-    },
+    properties: {},
 
-    onLoad: function () {
+    onLoad() {
         // 遍历子节点
         cc.Node.prototype.PathChild = function (path, componentName) {
-            let names = path.split('/')
-            let nd = null
+            let names = path.split('/');
+            let nd = null;
             for (let i = 0; i < names.length; i++) {
                 if (nd) {
-                    nd = nd.getChildByName(names[i])
+                    nd = nd.getChildByName(names[i]);
                 } else {
-                    nd = this.getChildByName(names[i])
+                    nd = this.getChildByName(names[i]);
                 }
             }
             if (componentName) {
-                return nd.getComponent(componentName)
+                return nd.getComponent(componentName);
             } else {
-                return nd
+                return nd;
             }
         }
 
         // 动态添加精灵图片
         window.SetSpriteFrame = function (path, sprite) {
             if (!path) {
-                sprite.spriteFrame = null
-                return
+                sprite.spriteFrame = null;
+                return;
             }
-            cc.loader.loadRes(path, cc.SpriteFrame, function (err, spriteFrame) {
+            cc.resources.load(path, function (err, spriteFrame) {
                 if (err) {
-                    cc.error(err)
-                    return
+                    cc.error(err);
+                    return;
                 }
-                sprite.spriteFrame = spriteFrame
+                sprite.spriteFrame = spriteFrame;
             })
         }
 
         // 记录一个进入游戏的时间
-        window.EnterGameTime = new Date().getTime() / 1000
+        window.EnterGameTime = new Date().getTime() / 1000;
 
         // 记录屏幕Size
-        window.winSize = cc.winSize
+        window.winSize = cc.winSize;
 
         // 克隆数据
         window.Clone = function (obj) {
-            return JSON.parse(JSON.stringify(obj))
+            return JSON.parse(JSON.stringify(obj));
         }
 
         // 设置本地缓存
         window.SetLocalStorage = function (key, data) {
-            cc.sys.localStorage.setItem(key, JSON.stringify(data))
+            cc.sys.localStorage.setItem(key, JSON.stringify(data));
         }
 
         // 获取本地缓存
         window.GetLocalStorage = function (key) {
-            let data = cc.sys.localStorage.getItem(key)
+            let data = cc.sys.localStorage.getItem(key);
             if (data) {
-                return JSON.parse(data)
+                return JSON.parse(data);
             }
-            return null
+            return null;
         }
     },
 });
