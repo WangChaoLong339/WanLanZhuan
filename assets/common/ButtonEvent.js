@@ -18,11 +18,11 @@ cc.Class({
     },
 
     // 属性
-    btnPrototype: function () {
+    btnAttribute: function () {
     },
 
     // 背包
-    btnBagpack: function () {
+    btnKnapsack: function () {
     },
 
     // 进阶
