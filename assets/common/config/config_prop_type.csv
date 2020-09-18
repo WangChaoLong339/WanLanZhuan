@@ -1,0 +1,15 @@
+CurrencyType,,,,,,
+Coin,Diam,Exchange,,,,
+0,1,2,,,,
+,,,,,,
+PropType,,,,,,
+Drug,Mat,Equip,Spec,,,
+0,1,2,3,,,
+,,,,,,
+EquipPlace,,,,,,
+Arms,Clothe,Cap,Necklace,Ring,Boots,Spec
+0,1,2,3,4,5,6
+,,,,,,
+Grade,,,,,,
+White,Green,Pink,Red,,,
+ #F8F8FF, #20B2AA, #FFB6C1, #DC143C,,,

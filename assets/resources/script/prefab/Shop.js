@@ -14,23 +14,12 @@ cc.Class({
 
         this.model = {
             curIdx: 0,
-            info: [
-                { title: '消耗', list: [{ name: '红药水', val: 1 }, { name: '蓝药水', val: 2 }, { name: '紫药水', val: 4 }] },
-                { title: '材料', list: [{ name: '木材', val: 1 }, { name: '乌木', val: 5 }] },
-                { title: '进阶', list: [] },
-                { title: '特殊', list: [{ name: '水晶', val: 100 }] },
-            ],
+            info: [],
         };
-
-        cc.resources.load('config/shopConfig', (err, data) => {
-            cc.log(JSON.stringify(data));
-            cc.log('-------------------------')
-            cc.log(data);
-        })
     },
 
     onenter(args) {
-        return;
+        // TODO 需要拿到商城配置列表 然后在刷新界面
         this.setupTabs();
         this.setupPage();
     },
