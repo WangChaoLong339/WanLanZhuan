@@ -36,33 +36,34 @@ cc.Class({
         this.mapContent.removeAllChildren();
 
         this.createMap();
+        this.random();
         this.createPlayer();
         this.createEnemy();
     },
 
     createMap() {
         this.mapData = [];
-        this.randomIdx = [];
+        this.randomIdxs = [];
         for (let i = 0; i < HeightCount * WidthCount; i++) {
-            this.randomIdx.push(i);
-            this.mapData.push([]);
+            this.randomIdxs.push(i);
+            this.mapData.push({});
         }
     },
 
     random() {
         // 乱序
-        for (let i = 0; i < this.randomIdx.length; i++) {
-            let ramdowI = Math.floor(Math.random() * (this.randomIdx.length));
+        for (let i = 0; i < this.randomIdxs.length; i++) {
+            let ramdowI = Math.floor(Math.random() * (this.randomIdxs.length));
             if (i != ramdowI) {
-                let d = this.randomIdx[i];
-                this.randomIdx[i] = this.randomIdx[ramdowI];
-                this.randomIdx[ramdowI] = d;
+                let d = this.randomIdxs[i];
+                this.randomIdxs[i] = this.randomIdxs[ramdowI];
+                this.randomIdxs[ramdowI] = d;
             }
         }
     },
 
     createPlayer() {
-        let idx = this.randomIdx.shift();
+        let idx = this.randomIdxs.shift();
         this.mapData[idx] = {
             '名字': Player['名字'],
             '血量': Player['血量'],
@@ -73,15 +74,15 @@ cc.Class({
         mapItem.PathChild('nickname', cc.Label).string = `Lv${Player['等级']}.${Player['名字']}`;
         mapItem.PathChild('hp', cc.Label).string = `HP:${Player['血量']}`;
         mapItem.PathChild('background').color = cc.color(this.mapData[idx]['颜色']);
-        let x = parseInt(this.mapData[idx] % WidthCount);
-        let y = parseInt(this.mapData[idx] % HeightCount);
+        let x = parseInt(idx % WidthCount);
+        let y = parseInt(idx % HeightCount);
         mapItem.position = cc.v2(x * mapItem.width + mapItem.width / 2, -y * mapItem.height - mapItem.height / 2);
         mapItem.parent = this.mapContent;
     },
 
     createEnemy() {
         for (let i = 0; i < this.cfg.length; i++) {
-            let idx = this.randomIdx.shift();
+            let idx = this.randomIdxs.shift();
             this.mapData[idx] = {
                 '名字': this.cfg[i]['名字'],
                 '血量': this.cfg[i]['血量'],
@@ -90,11 +91,11 @@ cc.Class({
             };
 
             let mapItem = cc.instantiate(this.mapItem);
-            mapItem.PathChild('nickname', cc.Label).string = `Lv${this.cfg[i]['等级']}.${this.mapData[idx]['名字']}`;
+            mapItem.PathChild('nickname', cc.Label).string = `Lv${this.mapData[idx]['等级']}.${this.mapData[idx]['名字']}`;
             mapItem.PathChild('hp', cc.Label).string = `HP:${this.mapData[idx]['血量']}`;
             mapItem.PathChild('background').color = cc.color(this.mapData[idx]['颜色']);
-            let x = parseInt(this.mapData[i + 1] % WidthCount);
-            let y = parseInt(this.mapData[i + 1] % HeightCount);
+            let x = parseInt(idx % WidthCount);
+            let y = parseInt(idx % HeightCount);
             mapItem.position = cc.v2(x * mapItem.width + mapItem.width / 2, -y * mapItem.height - mapItem.height / 2);
             mapItem.parent = this.mapContent;
         }
