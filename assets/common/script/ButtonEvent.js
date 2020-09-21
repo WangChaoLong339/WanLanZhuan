@@ -1,13 +1,20 @@
 cc.Class({
     extends: cc.Component,
 
-    properties: {},
+    properties: {
+    },
 
-    onLoad() {},
+    onLoad() {
+    },
 
     // 任务
     btnTask() {
         UiMgr.open('Task');
+    },
+
+    // 野外
+    btnBattle() {
+        UiMgr.open('Battle');
     },
 
     // 帮助
@@ -16,13 +23,16 @@ cc.Class({
     },
 
     // 属性
-    btnAttribute() {},
+    btnAttribute() {
+    },
 
     // 背包
-    btnKnapsack() {},
+    btnKnapsack() {
+    },
 
     // 进阶
-    btnSenior() {},
+    btnSenior() {
+    },
 
     // 商城
     btnShop() {

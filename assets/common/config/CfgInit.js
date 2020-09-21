@@ -38,8 +38,6 @@ cc.Class({
                 }
             }
         }
-
-        cc.log(this.Props);
     },
 
     _initShop() {
@@ -61,7 +59,5 @@ cc.Class({
                 this.Shop[p['类型']].push(l);
             }
         }
-
-        cc.log(this.Shop);
     },
 });
