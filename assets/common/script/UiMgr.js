@@ -14,7 +14,7 @@ cc.Class({
         let prafab = this.prefabsCache[name];
         if (!prafab) {
             let self = this;
-            cc.resources.load(`prefab/${name}`, function (err, pb) {
+            cc.resources.load(`prefab/${name}/${name}`, function (err, pb) {
                 if (err) {
                     cc.error(err);
                     return;
