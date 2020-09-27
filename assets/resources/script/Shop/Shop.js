@@ -14,6 +14,8 @@ cc.Class({
         this.pageItem = this.node.PathChild('pages/view/content/pageItem');
         this.pages.removeAllChildren();
 
+        this.box = this.node.PathChild('box');
+
         this.model = {
             curType: null,
             info: [],
@@ -28,6 +30,7 @@ cc.Class({
         // 拿到商城配置列表数据 然后在刷新界面
         this.model.info = PropCtrl.Shop || {};
 
+        this.hideBox();
         this.setupCurType();
         this.setupTabs();
         this.setupPage();
@@ -67,6 +70,17 @@ cc.Class({
         });
     },
 
+    showBox(prop) {
+        this.box.PathChild('background/title').color = cc.color(prop['颜色']);
+        this.box.PathChild('background/title', cc.Label).string = prop['名字'];
+        this.box.PathChild('background/discribe', cc.Label).string = prop['描述'];
+        this.box.active = true;
+    },
+
+    hideBox() {
+        this.box.active = false;
+    },
+
     btnTabItem(e) {
         this.model.curType = e.target['类型'];
         this.setupTabs();
@@ -74,7 +88,16 @@ cc.Class({
     },
 
     btnPageItem(e) {
-        cc.log(e.target.idx);
+        let prop = PropCtrl.getIdToProp(this.model.info[this.model.curType][e.target.idx]['编号']);
+        this.showBox(prop);
+    },
+
+    btnBuyProp(e, data) {
+        cc.log('购买: ' + parseInt(data));
+    },
+
+    btnCloseBox(e) {
+        this.hideBox();
     },
 
     btnClose() {

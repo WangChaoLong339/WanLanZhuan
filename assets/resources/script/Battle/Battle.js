@@ -1,5 +1,12 @@
-const WidthCount = 5;
-const HeightCount = 8;
+const WidthCount = 6;
+const HeightCount = 10;
+const infoItemPreLoadCount = 20;
+const MapItemType = {
+    None: 0,
+    My: 1,
+    Enemy: 2,
+}
+
 cc.Class({
     extends: cc.Component,
 
@@ -9,14 +16,12 @@ cc.Class({
     onLoad() {
         this.node.onenter = this.onenter.bind(this);
 
-        this.mapContent = this.node.PathChild('view/background/map');
+        this.mapContent = this.node.PathChild('viewRoot/mapMask/map');
         this.mapItem = this.mapContent.PathChild('mapItem');
         this.mapItem.width = this.mapContent.width / WidthCount;
         this.mapItem.height = this.mapContent.height / HeightCount;
-        this.infoScrollView = this.node.PathChild('view/infoScrollView');
-        this.infoContent = this.infoScrollView.getComponent(cc.ScrollView).content;
+        this.infoContent = this.node.PathChild('viewRoot/infoMask/content');
         this.infoItem = this.infoContent.PathChild('infoItem');
-        this.infoContent.removeAllChildren();
 
         this.cfg = [
             { '名字': '草原白狼', '等级': 1, '血量': 1 },
@@ -30,10 +35,32 @@ cc.Class({
             { '名字': '野猪王(Boss)', '等级': 3, '血量': 9 },
             { '名字': '远古食人兽(Boss)', '等级': 4, '血量': 10 },
         ];
+
+        this.infoItemPool = new cc.NodePool();
+        this.infoItemPool.pop = function () {
+            let infoItem = this.infoItemPool.get();
+            if (!infoItem) {
+                infoItem = cc.instantiate(this.infoItem);
+            }
+            return infoItem;
+        }.bind(this);
+        this.infoItemPreload();
+
+
+        //
+        window.battle = this;
+    },
+
+    infoItemPreload() {
+        for (let i = 0; i < infoItemPreLoadCount; i++) {
+            let infoItem = cc.instantiate(this.infoItem);
+            this.infoItemPool.put(infoItem);
+        }
     },
 
     onenter(args) {
         this.mapContent.removeAllChildren();
+        this.infoContent.removeAllChildren();
 
         this.createMap();
         this.random();
@@ -68,7 +95,7 @@ cc.Class({
             '名字': Player['名字'],
             '血量': Player['血量'],
             '等级': Player['等级'],
-            '颜色': '#71661F',
+            '颜色': '#F6E873',
         };
         let mapItem = cc.instantiate(this.mapItem);
         mapItem.PathChild('nickname', cc.Label).string = `Lv${Player['等级']}.${Player['名字']}`;
@@ -76,7 +103,9 @@ cc.Class({
         mapItem.PathChild('background').color = cc.color(this.mapData[idx]['颜色']);
         let x = parseInt(idx % WidthCount);
         let y = parseInt(idx % HeightCount);
+        mapItem.ij = { i: x, j: y };
         mapItem.position = cc.v2(x * mapItem.width + mapItem.width / 2, -y * mapItem.height - mapItem.height / 2);
+        mapItem.tag = MapItemType.My;
         mapItem.parent = this.mapContent;
     },
 
@@ -96,9 +125,31 @@ cc.Class({
             mapItem.PathChild('background').color = cc.color(this.mapData[idx]['颜色']);
             let x = parseInt(idx % WidthCount);
             let y = parseInt(idx % HeightCount);
+            mapItem.ij = { i: x, j: y };
             mapItem.position = cc.v2(x * mapItem.width + mapItem.width / 2, -y * mapItem.height - mapItem.height / 2);
+            mapItem.tag = MapItemType.Enemy;
             mapItem.parent = this.mapContent;
         }
+    },
+
+    addInfo(val) {
+        let infoItem = this.infoItemPool.pop();
+        infoItem.PathChild('val', cc.Label).string = val;
+        this.infoContent.insertChild(infoItem, 0);
+
+        for (let i = this.infoContent.children.length - 1; i >= 0; i--) {
+            let it = this.infoContent.children[i];
+            if (it.y - it.height > this.infoContent.height) {
+                it.PathChild('val', cc.Label).string = '';
+                it.position = cc.v2(0, 0);
+                this.infoContent.removeChild(it);
+                this.infoItemPool.put(it);
+            }
+        }
+    },
+
+    btnMapItem(e) {
+
     },
 
     btnClose() {

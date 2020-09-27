@@ -6,22 +6,21 @@ cc.Class({
     onLoad() {
         window.UiMgr = this;
         this.prefabRoot = this.node.PathChild('预制父节点');
-        this.propRoot = this.node.PathChild('弹窗父节点');
+        this.popRoot = this.node.PathChild('弹窗父节点');
         this.prefabsCache = {};
     },
 
     open(name, args) {
         let prafab = this.prefabsCache[name];
         if (!prafab) {
-            let self = this;
-            cc.resources.load(`prefab/${name}/${name}`, function (err, pb) {
+            cc.resources.load(`prefab/${name}/${name}`, (err, pb) => {
                 if (err) {
                     cc.error(err);
                     return;
                 }
                 prafab = cc.instantiate(pb);
-                prafab.parent = self.prefabRoot;
-                self.prefabsCache[name] = prafab;
+                prafab.parent = this.prefabRoot;
+                this.prefabsCache[name] = prafab;
                 prafab.active = true;
                 prafab.getComponent(name).onenter && prafab.getComponent(name).onenter(args);
             })
@@ -36,6 +35,25 @@ cc.Class({
         if (prefab) {
             prefab.getComponent(name).onleave && prefab.getComponent(name).onleave();
             prefab.active = false;
+        }
+    },
+
+    showMsgAutoHide(val) {
+        let prafab = this.prefabsCache[name];
+        if (!prafab) {
+            cc.resources.load('prefab/MsgAutoHide/MsgAutoHide', (err, prefab) => {
+                if (err) {
+                    cc.error(err);
+                    return;
+                }
+                prafab = cc.instantiate(pb);
+                prafab.parent = this.popRoot;
+                this.prefabsCache[name] = prafab;
+                prafab.active = true;
+                // prafab.getComponent(name).onenter && prafab.getComponent(name).onenter(args);
+            })
+        } else {
+
         }
     },
 });
