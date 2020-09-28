@@ -5,6 +5,21 @@ cc.Class({
     },
 
     onLoad() {
+        let maxScale = 1.1;
+        let minScale = 0.9;
+        cc.tween(this.node.PathChild('battle/val'))
+            .repeatForever(cc.tween()
+                .to(0.1, { scale: maxScale })
+                .to(0.1, { scale: 1 })
+                .to(0.1, { scale: minScale })
+                .to(0.1, { scale: 1 })
+                .to(0.1, { scale: maxScale })
+                .to(0.1, { scale: 1 })
+                .to(0.1, { scale: minScale })
+                .to(0.1, { scale: 1 })
+                .delay(1)
+            )
+            .start();
     },
 
     // 任务

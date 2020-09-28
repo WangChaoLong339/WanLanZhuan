@@ -35,7 +35,7 @@ cc.Class({
         item.getComponent(cc.Label).string = val;
         item.parent = this.layout;
         cc.tween(item)
-            .to(2, {})
+            .delay(2)
             .to(0.5, { opacity: 0 })
             .call(() => { item.parent = null; item.opacity = 255; this.pool.put(item); })
             .start();
