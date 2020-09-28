@@ -39,9 +39,10 @@ cc.Class({
     },
 
     showMsgAutoHide(val) {
+        let name = 'MsgAutoHide';
         let prafab = this.prefabsCache[name];
         if (!prafab) {
-            cc.resources.load('prefab/MsgAutoHide/MsgAutoHide', (err, prefab) => {
+            cc.resources.load(`prefab/${name}/${name}`, (err, pb) => {
                 if (err) {
                     cc.error(err);
                     return;
@@ -50,10 +51,11 @@ cc.Class({
                 prafab.parent = this.popRoot;
                 this.prefabsCache[name] = prafab;
                 prafab.active = true;
-                // prafab.getComponent(name).onenter && prafab.getComponent(name).onenter(args);
+                prafab.getComponent(name).show(val);
             })
         } else {
-
+            prafab.active = true;
+            prafab.getComponent(name).show(val);
         }
     },
 });
