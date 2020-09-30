@@ -5,6 +5,16 @@ cc.Class({
     },
 
     onLoad() {
+        // 帮助按钮
+        cc.tween(this.node.PathChild('help/val'))
+            .repeatForever(cc.tween()
+                .to(1, { scaleX: 0 })
+                .to(1, { scaleX: -1 })
+                .to(1, { scaleX: 0 })
+                .to(1, { scaleX: 1 })
+            )
+            .start();
+        // 野外按钮
         let maxScale = 1.1;
         let minScale = 0.9;
         cc.tween(this.node.PathChild('battle/val'))

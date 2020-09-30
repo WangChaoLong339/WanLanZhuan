@@ -122,7 +122,7 @@ cc.Class({
             let mapItem = cc.instantiate(this.mapItem);
             mapItem.PathChild('nickname', cc.Label).string = `Lv${this.mapData[idx]['等级']}.${this.mapData[idx]['名字']}`;
             mapItem.PathChild('hp', cc.Label).string = `HP:${this.mapData[idx]['血量']}`;
-            mapItem.PathChild('background').color = cc.color(this.mapData[idx]['颜色']);
+            mapItem.PathChild('foreground').color = cc.color(this.mapData[idx]['颜色']);
             let x = parseInt(idx % WidthCount);
             let y = parseInt(idx % HeightCount);
             mapItem.ij = { i: x, j: y };
