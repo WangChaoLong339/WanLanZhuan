@@ -19,10 +19,6 @@ cc.Class({
         this.model = {
             curType: null,
             info: [],
-            color: {
-                'checked': cc.color('#304FBC'),
-                'unchecked': cc.color('#476774'),
-            },
         };
     },
 
@@ -49,7 +45,7 @@ cc.Class({
         for (let i in this.model.info) {
             let tabItem = cc.instantiate(this.tabItem);
             let t = PropCtrl.getIdToProp(this.model.info[i][0]['编号'])['类型'];
-            tabItem.PathChild('background').color = t == this.model.curType ? this.model.color['checked'] : this.model.color['unchecked'];
+            tabItem.PathChild('background', 'MultiFrame').setFrame(t == this.model.curType ? 0 : 1);
             tabItem.PathChild('val', cc.Label).string = i;
             tabItem['类型'] = i;
             tabItem.parent = this.tabs;

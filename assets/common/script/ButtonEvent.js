@@ -30,6 +30,25 @@ cc.Class({
                 .delay(1)
             )
             .start();
+        // 宝藏按钮
+        cc.tween(this.node.PathChild('treasure/val'))
+            .repeatForever(cc.tween()
+                .to(0.1, { scale: maxScale })
+                .to(0.1, { scale: 1 })
+                .to(0.1, { scale: minScale })
+                .to(0.1, { scale: 1 })
+                .to(0.1, { scale: maxScale })
+                .to(0.1, { scale: 1 })
+                .to(0.1, { scale: minScale })
+                .to(0.1, { scale: 1 })
+                .delay(1)
+            )
+            .start();
+    },
+
+    //
+    btnTreasure() {
+        UiMgr.open('Treasure');
     },
 
     // 任务
@@ -53,6 +72,7 @@ cc.Class({
 
     // 背包
     btnKnapsack() {
+        UiMgr.open('Knapsack');
     },
 
     // 进阶
