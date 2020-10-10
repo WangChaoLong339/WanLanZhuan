@@ -51,14 +51,10 @@ cc.Class({
         window.battle = this;
     },
 
-    infoItemPreload() {
-        for (let i = 0; i < infoItemPreLoadCount; i++) {
-            let infoItem = cc.instantiate(this.infoItem);
-            this.infoItemPool.put(infoItem);
-        }
-    },
-
     onenter(args) {
+        AudioMgr.stopMusic();
+        AudioMgr.playMusic('sound/zhandou');
+
         this.mapContent.removeAllChildren();
         this.infoContent.removeAllChildren();
 
@@ -66,6 +62,18 @@ cc.Class({
         this.random();
         this.createPlayer();
         this.createEnemy();
+    },
+
+    onleave() {
+        AudioMgr.stopMusic();
+        AudioMgr.playMusic('sound/zhucheng');
+    },
+
+    infoItemPreload() {
+        for (let i = 0; i < infoItemPreLoadCount; i++) {
+            let infoItem = cc.instantiate(this.infoItem);
+            this.infoItemPool.put(infoItem);
+        }
     },
 
     createMap() {

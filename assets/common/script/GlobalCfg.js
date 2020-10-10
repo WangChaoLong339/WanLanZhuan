@@ -22,6 +22,11 @@ cc.Class({
             }
         }
 
+        /* *************************************************************************************************************** */
+
+        // 全局音量
+        window.Sound = { musicVolume: 1, soundVolume: 1, };
+
         // 动态添加精灵图片
         window.SetSpriteFrame = function (path, sprite) {
             if (!path) {

@@ -26,4 +26,8 @@ cc.Class({
 
     onDisable() {
     },
+
+    start() {
+        AudioMgr.playMusic('sound/zhucheng');
+    },
 });
