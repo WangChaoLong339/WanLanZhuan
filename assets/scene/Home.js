@@ -28,6 +28,6 @@ cc.Class({
     },
 
     start() {
-        AudioMgr.playMusic('sound/zhucheng');
+        AudioMgr.playMusic('bgm_home');
     },
 });

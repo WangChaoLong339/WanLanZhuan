@@ -46,7 +46,7 @@ cc.Class({
         window.EnterGameTime = new Date().getTime() / 1000;
 
         // 记录屏幕Size
-        window.winSize = cc.winSize;
+        window.WinSize = cc.winSize;
 
         // 克隆数据
         window.Clone = function (obj) {

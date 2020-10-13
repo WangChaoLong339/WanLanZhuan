@@ -11,7 +11,7 @@ cc.Class({
     },
 
     open(name, args) {
-        AudioMgr.playSound('sound/btn');
+        AudioMgr.playSound('btn_effect');
         let prafab = this.prefabsCache[name];
         if (!prafab) {
             cc.resources.load(`prefab/${name}/${name}`, (err, pb) => {
@@ -32,7 +32,7 @@ cc.Class({
     },
 
     close(name) {
-        AudioMgr.playSound('sound/btn');
+        AudioMgr.playSound('btn_effect');
         let prefab = this.prefabsCache[name];
         if (prefab) {
             prefab.getComponent(name).onleave && prefab.getComponent(name).onleave();

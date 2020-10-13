@@ -189,7 +189,7 @@
       "array": [
         0,
         0,
-        768.3711293232312,
+        768.151001509863,
         0,
         0,
         0,
@@ -1990,7 +1990,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "knapsack",
+    "_name": "backpack",
     "_objFlags": 0,
     "_parent": {
       "__id__": 34
@@ -2278,7 +2278,7 @@
     },
     "component": "",
     "_componentId": "f4bc0agWPZL37/HwFLT8y+1",
-    "handler": "btnKnapsack",
+    "handler": "btnBackpack",
     "customEventData": ""
   },
   {
@@ -3285,6 +3285,9 @@
       "__id__": 2
     },
     "_enabled": true,
+    "grade": {
+      "__uuid__": "f8bdf8f0-1a9c-46d2-8df3-66fda47dbf04"
+    },
     "props": {
       "__uuid__": "838eda12-4417-4687-9437-b8ce3584cf8c"
     },

@@ -4,11 +4,14 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        grade: cc.TextAsset,
         props: cc.TextAsset,
         shop: cc.TextAsset,
     },
 
     onLoad() {
+        // 品级颜色
+        this._initGrade();
         // 所有道具 object
         this._initProps();
         // 商城道具 array
@@ -17,11 +20,19 @@ cc.Class({
         window.PropCtrl = this;
     },
 
-    getIdToProp(id) {
-        if (!this.Props[id]) {
-            return cc.error(`${this.Props} not contain ${id}`);
+    _initGrade() {
+        this.Grade = {};
+        let data = papa.parse(this.grade.text).data;
+        let title = data.shift();
+        for (let i = 0; i < data.length; i++) {
+            // 过滤空行
+            if (data[i][0] != '') {
+                this.Grade[data[i][0]] = {};
+                for (let j = 0; j < title.length; j++) {
+                    this.Grade[data[i][0]][title[j]] = data[i][j];
+                }
+            }
         }
-        return this.Props[id];
     },
 
     _initProps() {
@@ -52,12 +63,23 @@ cc.Class({
                 for (let j = 0; j < title.length; j++) {
                     l[title[j]] = d[j];
                 }
-                let p = this.getIdToProp(d[0]);
+                let p = this.getPropById(d[0]);
                 if (!this.Shop[p['类型']]) {
                     this.Shop[p['类型']] = [];
                 }
                 this.Shop[p['类型']].push(l);
             }
         }
+    },
+
+    getPropById(id) {
+        if (!this.Props[id]) {
+            return cc.error(`${this.Props} not contain ${id}`);
+        }
+        return this.Props[id];
+    },
+
+    gradeToColor(grade) {
+        return this.Grade[grade]['颜色'];
     },
 });

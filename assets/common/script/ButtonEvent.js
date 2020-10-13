@@ -71,8 +71,8 @@ cc.Class({
     },
 
     // 背包
-    btnKnapsack() {
-        UiMgr.open('Knapsack');
+    btnBackpack() {
+        UiMgr.open('Backpack');
     },
 
     // 进阶

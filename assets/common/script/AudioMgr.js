@@ -1,6 +1,6 @@
 class AudioMgr {
     constructor() {
-        this.model = { cache: {}, musicId: null };
+        this.model = { prefix: 'sound/', cache: {}, musicId: null };
     }
 
     get soundVolume() {
@@ -37,16 +37,17 @@ class AudioMgr {
         this.musicVolume = val ? 0.5 : 0
     }
 
-    playSound(file) {
-        if (this.model.cache[file]) {
-            return cc.audioEngine.play(this.model.cache[file], false, 0.5);
+    playSound(fileName) {
+        let path = this.model.prefix + fileName;
+        if (this.model.cache[path]) {
+            return cc.audioEngine.play(this.model.cache[path], false, 0.5);
         }
         let self = this;
-        cc.resources.load(file, cc.AudioClip, null, function (err, clip) {
+        cc.resources.load(path, cc.AudioClip, null, function (err, clip) {
             if (err) {
                 return cc.error(err);
             }
-            self.model.cache[file] = clip;
+            self.model.cache[path] = clip;
             cc.audioEngine.play(clip, false, 0.5);
         });
     }
@@ -55,16 +56,17 @@ class AudioMgr {
     }
 
     // 开始播放背景音乐
-    playMusic(file) {
-        if (this.model.cache[file]) {
-            return cc.audioEngine.playMusic(this.model.cache[file], true);
+    playMusic(fileName) {
+        let path = this.model.prefix + fileName;
+        if (this.model.cache[path]) {
+            return cc.audioEngine.playMusic(this.model.cache[path], true);
         }
         let self = this;
-        cc.resources.load(file, cc.AudioClip, null, function (err, clip) {
+        cc.resources.load(path, cc.AudioClip, null, function (err, clip) {
             if (err) {
                 return cc.error(err);
             }
-            self.model.cache[file] = clip;
+            self.model.cache[path] = clip;
             cc.audioEngine.playMusic(clip, true);
         });
     }
