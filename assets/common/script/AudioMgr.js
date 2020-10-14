@@ -57,6 +57,7 @@ class AudioMgr {
 
     // 开始播放背景音乐
     playMusic(fileName) {
+        this.stopMusic();
         let path = this.model.prefix + fileName;
         if (this.model.cache[path]) {
             return cc.audioEngine.playMusic(this.model.cache[path], true);

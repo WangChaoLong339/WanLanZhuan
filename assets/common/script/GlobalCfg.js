@@ -27,13 +27,19 @@ cc.Class({
         // 全局音量
         window.Sound = { musicVolume: 1, soundVolume: 1, };
 
+        // 消耗货币颜色
+        window.Consume = {
+            '金币': { id: 0, color: '#ffffff' },
+            '钻石': { id: 1, color: '#2F41E3' },
+        }
+
         // 动态添加精灵图片
         window.SetSpriteFrame = function (path, sprite) {
             if (!path) {
                 sprite.spriteFrame = null;
                 return;
             }
-            cc.resources.load(path, function (err, spriteFrame) {
+            cc.resources.load(path, cc.SpriteFrame, null, function (err, spriteFrame) {
                 if (err) {
                     cc.error(err);
                     return;

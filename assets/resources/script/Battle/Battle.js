@@ -52,7 +52,6 @@ cc.Class({
     },
 
     onenter(args) {
-        AudioMgr.stopMusic();
         AudioMgr.playMusic('zhandou');
 
         this.mapContent.removeAllChildren();
@@ -65,7 +64,6 @@ cc.Class({
     },
 
     onleave() {
-        AudioMgr.stopMusic();
         AudioMgr.playMusic('bgm_home');
     },
 

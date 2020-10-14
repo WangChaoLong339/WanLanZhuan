@@ -14,8 +14,6 @@ cc.Class({
         this.pageItem = this.node.PathChild('pages/view/content/pageItem');
         this.pages.removeAllChildren();
 
-        this.box = this.node.PathChild('box');
-
         this.model = {
             curType: null,
             info: [],
@@ -23,13 +21,26 @@ cc.Class({
     },
 
     onenter(args) {
+        AudioMgr.playMusic('bgm_shop');
+
         // 拿到商城配置列表数据 然后在刷新界面
         this.model.info = PropCtrl.Shop || {};
 
-        this.hideBox();
+        this.updateTop();
         this.setupCurType();
         this.setupTabs();
         this.setupPage();
+    },
+
+    onleave() {
+        AudioMgr.playMusic('bgm_home');
+    },
+
+    updateTop() {
+        this.node.PathChild('top/coin/val').color = cc.color(Consume['金币'].color);
+        this.node.PathChild('top/coin/val', cc.Label).string = Player['金币'];
+        this.node.PathChild('top/diam/val').color = cc.color(Consume['钻石'].color);
+        this.node.PathChild('top/diam/val', cc.Label).string = Player['钻石'];
     },
 
     setupCurType() {
@@ -60,40 +71,32 @@ cc.Class({
             pageItem.PathChild('title', cc.Label).string = prop['名字'];
             pageItem.PathChild('title').color = cc.color(PropCtrl.gradeToColor(prop['品级']));
             pageItem.PathChild('describe', cc.Label).string = prop['描述'];
-            pageItem.PathChild('val', cc.Label).string = `${it['消耗类型']}:${it['消耗数值']}`;
+            pageItem.PathChild('val', cc.Label).string = `${it['消耗数值']}`;
+            pageItem.PathChild('val').color = cc.color(Consume[it['消耗类型']].color);
+            pageItem.PathChild('valIcon', 'MultiFrame').setFrame(Consume[it['消耗类型']].id);
+            pageItem.PathChild('count', cc.Label).string = `${it['数量']}`;
+            SetSpriteFrame(`ui/Prop/${it['编号']}`, pageItem.PathChild('icon', cc.Sprite));
             pageItem.idx = idx;
             pageItem.parent = this.pages;
         });
     },
 
-    showBox(prop) {
-        this.box.PathChild('background/title').color = cc.color(PropCtrl.gradeToColor(prop['品级']));
-        this.box.PathChild('background/title', cc.Label).string = prop['名字'];
-        this.box.PathChild('background/discribe', cc.Label).string = prop['描述'];
-        this.box.active = true;
-    },
-
-    hideBox() {
-        this.box.active = false;
-    },
-
     btnTabItem(e) {
+        if (this.model.curType == e.target['类型']) {
+            return;
+        }
         this.model.curType = e.target['类型'];
         this.setupTabs();
         this.setupPage();
     },
 
-    btnPageItem(e) {
-        let prop = PropCtrl.getPropById(this.model.info[this.model.curType][e.target.idx]['编号']);
-        this.showBox(prop);
+    btnBuy(e) {
+        let prop = this.model.info[this.model.curType][e.target.parent.idx];
+        cc.log(JSON.stringify(prop));
     },
 
     btnBuyProp(e, data) {
         cc.log('购买: ' + parseInt(data));
-    },
-
-    btnCloseBox(e) {
-        this.hideBox();
     },
 
     btnClose() {
