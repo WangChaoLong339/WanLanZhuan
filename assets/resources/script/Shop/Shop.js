@@ -71,7 +71,7 @@ cc.Class({
             pageItem.PathChild('title', cc.Label).string = prop['名字'];
             pageItem.PathChild('title').color = cc.color(PropCtrl.gradeToColor(prop['品级']));
             pageItem.PathChild('describe', cc.Label).string = prop['描述'];
-            pageItem.PathChild('val', cc.Label).string = `${it['消耗数值']}`;
+            pageItem.PathChild('val', cc.Label).string = `${it['消耗']}`;
             pageItem.PathChild('val').color = cc.color(Consume[it['消耗类型']].color);
             pageItem.PathChild('valIcon', 'MultiFrame').setFrame(Consume[it['消耗类型']].id);
             pageItem.PathChild('count', cc.Label).string = `${it['数量']}`;
@@ -92,11 +92,15 @@ cc.Class({
 
     btnBuy(e) {
         let prop = this.model.info[this.model.curType][e.target.parent.idx];
-        cc.log(JSON.stringify(prop));
-    },
-
-    btnBuyProp(e, data) {
-        cc.log('购买: ' + parseInt(data));
+        let propName = PropCtrl.getPropById(prop['编号'])['名字'];
+        let totalConsume = parseInt(prop['消耗']);
+        UiMgr.openMsgBox({
+            title: '温馨提示',
+            info: `消耗[${prop['消耗类型']}]X${totalConsume}购买${propName}X${prop['数量']}`,
+            btn0Name: '购买',
+            btn1Name: '取消',
+            func: () => { },
+        });
     },
 
     btnClose() {
