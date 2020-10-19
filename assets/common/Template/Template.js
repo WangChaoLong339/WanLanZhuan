@@ -11,6 +11,9 @@ cc.Class({
     onenter(args) {
     },
 
+    onleave() {
+    },
+
     btnClose() {
         UiMgr.close(this.node.name);
     },
