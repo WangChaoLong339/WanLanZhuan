@@ -92,14 +92,14 @@ cc.Class({
 
     btnBuy(e) {
         let prop = this.model.info[this.model.curType][e.target.parent.idx];
-        let propName = PropCtrl.getPropById(prop['编号'])['名字'];
+        let propName = prop['名字'];
         let totalConsume = parseInt(prop['消耗']);
         UiMgr.openMsgBox({
             title: '温馨提示',
             info: `消耗[${prop['消耗类型']}]X${totalConsume}购买${propName}X${prop['数量']}`,
             btn0Name: '购买',
             btn1Name: '取消',
-            func: () => { },
+            func: () => { AudioMgr.playSound('Shop/buy'); },
         });
     },
 

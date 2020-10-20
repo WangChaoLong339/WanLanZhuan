@@ -52,7 +52,7 @@ cc.Class({
     },
 
     onenter(args) {
-        AudioMgr.playMusic('zhandou');
+        AudioMgr.playMusic('bgm_battle');
 
         this.mapContent.removeAllChildren();
         this.infoContent.removeAllChildren();

@@ -36,23 +36,26 @@ cc.Class({
     },
 
     _initProps() {
-        this.Props = {};
+        this.Id2Prop = {};
+        this.Name2Prop = {};
 
         let data = papa.parse(this.props.text).data;
         let title = data.shift();
         for (let i = 0; i < data.length; i++) {
             // 过滤空行
             if (data[i][0] != '') {
-                this.Props[data[i][0]] = {};
+                this.Id2Prop[data[i][0]] = {};
+                this.Name2Prop[data[i][1]] = {};
                 for (let j = 0; j < title.length; j++) {
-                    this.Props[data[i][0]][title[j]] = data[i][j];
+                    this.Id2Prop[data[i][0]][title[j]] = data[i][j];
+                    this.Name2Prop[data[i][1]][title[j]] = data[i][j];
                 }
             }
         }
     },
 
     _initShop() {
-        this.Shop = [];
+        this.Shop = {};
         let data = papa.parse(this.shop.text).data;
         let title = data.shift();
         for (let i = 0; i < data.length; i++) {
@@ -73,10 +76,17 @@ cc.Class({
     },
 
     getPropById(id) {
-        if (!this.Props[id]) {
-            return cc.error(`${this.Props} not contain ${id}`);
+        if (!this.Id2Prop[id]) {
+            return cc.error(`${this.Id2Prop} not contain ${id}`);
         }
-        return this.Props[id];
+        return this.Id2Prop[id];
+    },
+
+    getPropByName(name) {
+        if (!this.Name2Prop[name]) {
+            return cc.error(`${this.Name2Prop} not contain ${name}`);
+        }
+        return this.Name2Prop[name];
     },
 
     gradeToColor(grade) {
