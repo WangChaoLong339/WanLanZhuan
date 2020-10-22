@@ -46,7 +46,12 @@ cc.Class({
             .start();
     },
 
-    //
+    // 设置
+    btnSetting() {
+        UiMgr.open('Setting');
+    },
+
+    // 藏宝阁
     btnTreasure() {
         UiMgr.open('Treasure');
     },

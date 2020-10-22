@@ -5,6 +5,10 @@ cc.Class({
     },
 
     onLoad() {
+        cc.tween(this.node)
+            .delay(0.1)
+            .call(() => { AudioMgr.playMusic('bgm_home'); })
+            .start();
     },
 
     onEnable() {
@@ -30,9 +34,5 @@ cc.Class({
     },
 
     onDisable() {
-    },
-
-    start() {
-        AudioMgr.playMusic('bgm_home');
     },
 });
