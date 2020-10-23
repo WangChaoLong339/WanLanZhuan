@@ -138,14 +138,14 @@ cc.Class({
         this.model.opendIdx.push(idx);
 
         cc.tween(this.cardsRoot.children[idx])
-            .call(() => { AudioMgr.playSound('Treasure/card_rotate'); })
+            .call(() => { AudioMgr.playEffect('Treasure/card_rotate'); })
             .repeat(5, cc.tween()
                 .to(0.12, { scaleX: 0 })
                 .to(0.12, { scaleX: 1 })
             )
             .to(0.3, { scaleX: 0 })
             .call(() => {
-                AudioMgr.playSound('Treasure/card_open');
+                AudioMgr.playEffect('Treasure/card_open');
                 this.cardsRoot.children[idx].PathChild('bg', 'MultiFrame').setFrame(1);
                 this.model.drawing = false;
             })

@@ -99,7 +99,7 @@ cc.Class({
             info: `消耗[${prop['消耗类型']}]X${totalConsume}购买${propName}X${prop['数量']}`,
             btn0Name: '购买',
             btn1Name: '取消',
-            func: () => { AudioMgr.playSound('Shop/buy'); },
+            func: () => { AudioMgr.playEffect('Shop/buy'); },
         });
     },
 

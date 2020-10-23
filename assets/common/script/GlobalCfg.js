@@ -24,8 +24,8 @@ cc.Class({
 
         /* *************************************************************************************************************** */
 
-        // 全局音量
-        window.Sound = { musicVolume: 1, soundVolume: 1, };
+        //游戏名字
+        window.GameName = 'WanLanZhuan';
 
         // 消耗货币颜色
         window.Consume = {

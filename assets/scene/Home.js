@@ -5,14 +5,10 @@ cc.Class({
     },
 
     onLoad() {
-        cc.tween(this.node)
-            .delay(0.1)
-            .call(() => { AudioMgr.playMusic('bgm_home'); })
-            .start();
     },
 
     onEnable() {
-        let player = GetLocalStorage('WanLanZhuan-Player');
+        let player = GetLocalStorage(`${GameName}_PlayerInfo`);
         if (!player) {
             player = {
                 '名字': '晚澜',
@@ -27,7 +23,7 @@ cc.Class({
                     { '编号': 20000, '数量': 5 },
                 ],
             };
-            SetLocalStorage('WanLanZhuan-Player', player);
+            SetLocalStorage(`${GameName}_PlayerInfo`, player);
         }
 
         window.Player = player;

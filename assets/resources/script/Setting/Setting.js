@@ -8,26 +8,51 @@ cc.Class({
         this.node.onenter = this.onenter.bind(this);
 
         this.maxWidth = this.node.PathChild('frame/music/slider/background').width;
-        this.musicHandel = this.node.PathChild('frame/music/slider/handle');
-        this.effectHandel = this.node.PathChild('frame/effect/slider/handle');
+        this.musicForeground = this.node.PathChild('frame/music/slider/foreground');
+        this.musicHandle = this.node.PathChild('frame/music/slider/musicHandle');
+        
+        this.effectForeground = this.node.PathChild('frame/effect/slider/foreground')
+        this.effectHandle = this.node.PathChild('frame/effect/slider/effectHandle');
     },
 
     onenter(args) {
+        this.setupMusic();
+        this.setupEffect();
+        this.setupMusicHandle();
+        this.setupEffectHandle();
     },
 
     onleave() {
     },
 
     moveMusicHandle(e) {
-        this.node.PathChild('frame/music/slider/foreground').width = this.musicHandel.x;
-        let val = e.progress.toFixed(2);
-        cc.audioEngine.setMusicVolume(val);
+        let val = e.progress.toFixed(1);
+        AudioMgr.setMusicVolume(val);
+
+        this.setupMusic();
     },
 
     moveEffectHandle(e) {
-        this.node.PathChild('frame/effect/slider/foreground').width = this.effectHandel.x;
-        let val = e.progress.toFixed(2);
-        cc.audioEngine.setEffectsVolume(val);
+        let val = e.progress.toFixed(1);
+        AudioMgr.setEffectVolume(val);
+
+        this.setupEffect();
+    },
+
+    setupMusic() {
+        this.musicForeground.width = this.maxWidth * AudioMgr.musicVolume;
+    },
+
+    setupEffect() {
+        this.effectForeground.width = this.maxWidth * AudioMgr.effectVolume;
+    },
+
+    setupMusicHandle() {
+        this.musicHandle.x = this.maxWidth * AudioMgr.musicVolume;
+    },
+
+    setupEffectHandle() {
+        this.effectHandle.x = this.maxWidth * AudioMgr.effectVolume;
     },
 
     btnClose() {

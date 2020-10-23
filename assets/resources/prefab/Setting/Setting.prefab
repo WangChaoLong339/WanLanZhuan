@@ -850,8 +850,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -3.552713678800501e-15,
+        -4.973799150320701e-14,
         0,
         0,
         0,
@@ -915,7 +915,7 @@
     "asset": {
       "__uuid__": "cee19020-703e-407f-9d4b-839330667a19"
     },
-    "fileId": "4b590hw+NFNoa5Srlilvz0",
+    "fileId": "4czn0JP2tN4J0DPSL5QZRa",
     "sync": false
   },
   {
@@ -957,8 +957,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -3.552713678800501e-15,
+        -4.973799150320701e-14,
         0,
         0,
         0,
@@ -1022,12 +1022,12 @@
     "asset": {
       "__uuid__": "cee19020-703e-407f-9d4b-839330667a19"
     },
-    "fileId": "a9OtT14+RGeaPeBifYEzco",
+    "fileId": "a4wkE+Ur1BqKBkrbSzKE98",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "handle",
+    "_name": "musicHandle",
     "_objFlags": 0,
     "_parent": {
       "__id__": 19
@@ -1068,7 +1068,7 @@
       "ctor": "Float64Array",
       "array": [
         300,
-        0,
+        -4.973799150320701e-14,
         0,
         0,
         0,
@@ -1216,7 +1216,7 @@
     "asset": {
       "__uuid__": "cee19020-703e-407f-9d4b-839330667a19"
     },
-    "fileId": "c102wd565Jm5Zg4FreQ1J7",
+    "fileId": "932wHb2WhPjJYdrvWgoV3u",
     "sync": false
   },
   {
@@ -1484,8 +1484,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -3.552713678800501e-15,
+        -2.842170943040401e-14,
         0,
         0,
         0,
@@ -1549,7 +1549,7 @@
     "asset": {
       "__uuid__": "cee19020-703e-407f-9d4b-839330667a19"
     },
-    "fileId": "5eADWor2lFwIIKIJcVqPrr",
+    "fileId": "68GI8yhzBKGI+31pJXvpXI",
     "sync": false
   },
   {
@@ -1591,8 +1591,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -3.552713678800501e-15,
+        -2.842170943040401e-14,
         0,
         0,
         0,
@@ -1656,12 +1656,12 @@
     "asset": {
       "__uuid__": "cee19020-703e-407f-9d4b-839330667a19"
     },
-    "fileId": "845IzoK/pGk6c80Ifyi9C+",
+    "fileId": "bbV+HxuwRIpomLcPrhK5az",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "handle",
+    "_name": "effectHandle",
     "_objFlags": 0,
     "_parent": {
       "__id__": 36
@@ -1701,8 +1701,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        120,
-        -5,
+        120.00000000000003,
+        -5.000000000000028,
         0,
         0,
         0,
@@ -1850,7 +1850,7 @@
     "asset": {
       "__uuid__": "cee19020-703e-407f-9d4b-839330667a19"
     },
-    "fileId": "a4ooHR0dVLbIixlGnHL10d",
+    "fileId": "34CAhN1pVADIpchWUqsPUu",
     "sync": false
   },
   {
