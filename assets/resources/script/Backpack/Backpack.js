@@ -14,14 +14,14 @@ cc.Class({
         this.tabs = this.node.PathChild('tabs');
         this.tabItem = this.node.PathChild('tabs/tabItem');
         this.tabs.removeAllChildren();
-        let tabItemWidth = (this.tabs.width - 20) / MaxTabItemCount;
+        let tabItemWidth = parseInt((this.tabs.width - 20) / MaxTabItemCount);
         this.tabItem.width = tabItemWidth;
         this.tabItem.height = tabItemWidth / 2;
 
         this.pages = this.node.PathChild('pages/view/content');
         this.pageItem = this.node.PathChild('pages/view/content/item');
         this.pages.removeAllChildren();
-        let pageItemWidth = this.pages.width / MaxPageItemCount;
+        let pageItemWidth = parseInt(this.pages.width / MaxPageItemCount);
         this.pageItem.width = pageItemWidth;
         this.pageItem.height = pageItemWidth;
 

@@ -44,12 +44,12 @@ cc.Class({
         // middle
         this.middle = this.node.PathChild('middle');
         this.middle.width = WinSize.width - 50;
-        this.middle.height = this.middle.width / this.model.middleScale;
+        this.middle.height = parseInt(this.middle.width / this.model.middleScale);
         this.cardsRoot = this.middle.PathChild('cardsRoot');
         this.cardItem = this.cardsRoot.PathChild('cardItem');
         this.cardsRoot.removeAllChildren();
-        this.cardItem.width = this.cardsRoot.width / CardWidthCount;
-        this.cardItem.height = this.cardItem.width / this.model.cardScale;
+        this.cardItem.width = parseInt(this.cardsRoot.width / CardWidthCount);
+        this.cardItem.height = parseInt(this.cardItem.width / this.model.cardScale);
         // bottom
         this.rewardsRoot = this.node.PathChild('bottom/scrollView/view/content');
         this.rewardItem = this.node.PathChild('bottom/scrollView/view/content/rewardItem');

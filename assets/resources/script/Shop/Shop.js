@@ -79,6 +79,8 @@ cc.Class({
             pageItem.idx = idx;
             pageItem.parent = this.pages;
         });
+        this.node.PathChild('pages', cc.ScrollView).stopAutoScroll();
+        this.node.PathChild('pages', cc.ScrollView).scrollToTop();
     },
 
     btnTabItem(e) {
